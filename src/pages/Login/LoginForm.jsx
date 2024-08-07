@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 import styled from "styled-components"
 import InputText from "../../components/UI/InputText"
 import Button from "../../components/UI/Button"
@@ -7,13 +8,15 @@ import media from "../../style/breakpoints"
 function LoginForm() {
 	const [username, setUsername] = useState("")
 
+	const navigate = useNavigate()
+
 	const handleChange = (e) => {
 		setUsername(e.target.value)
 	}
 
 	const handleSubmit = (e) => {
 		e.preventDefault()
-		console.log(`Hello ${username}`)
+		navigate(`/order/${username}`)
 	}
 
 	return (

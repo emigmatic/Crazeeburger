@@ -1,19 +1,20 @@
-import styled from "styled-components"
+import { Routes, Route } from "react-router-dom"
 import { GlobalStyle } from "./style/Style"
 import LoginPage from "./pages/Login/LoginPage"
+import OrderPage from "./pages/Order/OrderPage"
+import ErrorPage from "./pages/Error/ErrorPage"
 
 function App() {
 	return (
 		<>
 			<GlobalStyle />
-			<PageLogin></PageLogin>
+			<Routes>
+				<Route path="/" element={<LoginPage />} />
+				<Route path="/order/:username" element={<OrderPage />} />
+				<Route path="*" element={<ErrorPage />} />
+			</Routes>
 		</>
 	)
 }
-
-const PageLogin = styled(LoginPage)`
-	max-width: 980px;
-	margin: 0 auto;
-`
 
 export default App

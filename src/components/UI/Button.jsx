@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { forwardRef } from "react"
 
 const Button = forwardRef(function Button(props, ref) {
