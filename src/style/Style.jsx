@@ -1,4 +1,5 @@
 import { createGlobalStyle, styled, keyframes } from "styled-components"
+import { theme } from "../style/theme"
 import media from "./breakpoints"
 
 const StyledGlobalStyle = createGlobalStyle`
@@ -19,7 +20,11 @@ const StyledGlobalStyle = createGlobalStyle`
   body {
     margin: 0;
     padding: 0;
-    font-size: 1rem;
+    font-size: 1.6em;
+  }
+  ::placeholder {
+    color: ${theme.colors.greyMedium};
+    opacity: 1;
   }
 `
 
