@@ -2,18 +2,16 @@
 import { forwardRef } from "react"
 
 const InputText = forwardRef(function InputText(
-	{ placeholder, icon, className, value, onChange },
+	{ name, className, ...props },
 	ref
 ) {
 	return (
 		<input
 			ref={ref}
 			type="text"
-			placeholder={placeholder}
-			value={value}
-			onChange={onChange}
-			className={className}
-			required
+			id={name}
+			className={`form-control ${className}`}
+			{...props}
 		/>
 	)
 })

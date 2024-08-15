@@ -3,7 +3,9 @@ import { useNavigate } from "react-router-dom"
 import styled from "styled-components"
 import InputText from "../../components/UI/InputText"
 import Button from "../../components/UI/Button"
+import { theme } from "../../style/theme"
 import media from "../../style/breakpoints"
+import { FaChevronRight } from "react-icons/fa"
 
 function LoginForm() {
 	const [username, setUsername] = useState("")
@@ -23,13 +25,19 @@ function LoginForm() {
 		<>
 			<StyledH2>Connectez-vous</StyledH2>
 			<form onSubmit={handleSubmit}>
-				<StyledInputText
-					value={username}
-					onChange={handleChange}
-					placeholder="Entrez votre nom"
-				/>
-				<StyledButton htmlType="submit">
+				<StyledFormGroup className="form-group fa fa-user-circle">
+					<label htmlFor="username">Nom :</label>
+					<StyledInputText
+						placeholder="Entrez votre nom"
+						required
+						name="username"
+						value={username}
+						onChange={handleChange}
+					/>
+				</StyledFormGroup>
+				<StyledButton htmlType="submit" className="icon">
 					Accéder à mon espace
+					<FaChevronRight size="1em" />
 				</StyledButton>
 			</form>
 		</>
@@ -46,15 +54,37 @@ const StyledH2 = styled.h2`
 	`}
 `
 
+const StyledFormGroup = styled.div`
+	position: relative;
+	width: 100%;
+
+	&::before {
+		position: absolute;
+		left: 1rem;
+		top: 50%;
+		transform: translateY(-50%);
+		font-size: 1.8rem;
+		color: ${theme.colors.greySemiDark};
+	}
+
+	label {
+		display: none;
+	}
+`
+
 const StyledInputText = styled(InputText)`
 	display: block;
 	width: 100%;
-	padding: 1rem 1.5rem 1rem 4.5rem;
+	padding: 1rem 1rem 1rem 4rem;
 	background-color: #fff;
 	border-radius: 5px;
 	border: 0 none;
 	font-size: 1.6rem;
 	line-height: 1.5;
+
+	${media.md`
+		font-size: 1.8rem;
+	`}
 `
 
 const StyledButton = styled(Button)`
@@ -62,7 +92,7 @@ const StyledButton = styled(Button)`
 	width: 100%;
 	margin-top: 1.5rem;
 	padding: 1rem 1.5rem;
-	background-color: rgb(255, 160, 27);
+	background-color: ${theme.colors.primary};
 	border: 0 none;
 	border-radius: 5px;
 	color: white;
@@ -71,10 +101,24 @@ const StyledButton = styled(Button)`
 	line-height: 1.5;
 	cursor: pointer;
 
+	&.icon {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		svg {
+			margin-left: 1rem;
+		}
+	}
+
 	&:hover {
 		background-color: white;
-		color: rgb(255, 160, 27);
+		color: ${theme.colors.primary};
 	}
+
+	${media.md`
+		font-size: 1.8rem;
+	`}
 `
 
 export default LoginForm
