@@ -31,6 +31,10 @@ const spacing = {
 }
 
 const fonts = {
+	family: {
+		typo1: "Arial, Helvetica, sans-serif",
+		typo2: "'Amatic SC', Helvetica, sans-serif",
+	},
 	size: {
 		XXXS: "8px",
 		XXS: "10px",

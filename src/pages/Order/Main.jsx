@@ -1,14 +1,19 @@
 import styled from "styled-components"
 import { theme } from "../../style/theme"
+import Basket from "../../components/Basket"
+import Menu from "../../components/Menu"
 
 function Main() {
-	return <StyledMain>Hi</StyledMain>
+	return (
+		<StyledMain>
+			<Menu />
+		</StyledMain>
+	)
 }
 
 const StyledMain = styled.main`
-	flex: 1 0 auto;
-	background-color: ${theme.colors.background_white};
-	box-shadow: rgba(0, 0, 0, 0.2) 0 8px 20px 8px inset;
+	flex: 1;
+	overflow-y: auto;
 `
 
 export default Main

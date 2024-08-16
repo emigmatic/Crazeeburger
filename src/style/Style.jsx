@@ -3,29 +3,33 @@ import { theme } from "../style/theme"
 import media from "./breakpoints"
 
 const StyledGlobalStyle = createGlobalStyle`
-  * {
-    box-sizing: border-box;
+	* {
+		box-sizing: border-box;
 
-    &::before,
-    &::after {
-      box-sizing: border-box;
-    }
-  }
+		&::before,
+		&::after {
+			box-sizing: border-box;
+		}
+	}
 
-  html {
-    font-family: 'Amatic SC', Helvetica, sans-serif;
-    font-size: 62.5%;
-    line-height: 1.4;
-  }
-  body {
-    margin: 0;
-    padding: 0;
-    font-size: 1.6em;
-  }
-  ::placeholder {
-    color: ${theme.colors.greyMedium};
-    opacity: 1;
-  }
+	html {
+    	font-family: ${theme.fonts.family.typo1};
+    	font-size: 62.5%;
+    	line-height: 1.4;
+		hyphens: auto;
+	}
+	body {
+    	margin: 0;
+    	padding: 0;
+    	font-size: 1.6em;
+	}
+	input {
+		font-family: ${theme.fonts.family.typo1};
+	}
+	::placeholder {
+		color: ${theme.colors.greyMedium};
+		opacity: 1;
+	}
 `
 
 function GlobalStyle() {

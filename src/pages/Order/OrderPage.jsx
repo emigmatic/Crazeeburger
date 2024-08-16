@@ -32,6 +32,7 @@ const StyledContainer = styled.div`
 	height: 100%;
 	border-radius: 15px;
 	background-color: white;
+	overflow: hidden;
 `
 
 export default OrderPage

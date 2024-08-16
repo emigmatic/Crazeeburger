@@ -46,6 +46,7 @@ function LoginForm() {
 
 const StyledH2 = styled.h2`
 	margin: 4.5rem auto 1.5rem;
+	font-family: ${theme.fonts.family.typo2};
 	font-size: 3.2rem;
 	line-height: 1.2;
 

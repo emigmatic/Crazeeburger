@@ -29,10 +29,10 @@ function Profile() {
 const StyledProfile = styled.div`
 	display: flex;
 	align-items: center;
-	font-family: Arial, Helvetica, sans-serif;
 
 	p {
 		margin: 0;
+		color: ${theme.colors.greyBlue};
 	}
 
 	.user-info {
@@ -41,6 +41,7 @@ const StyledProfile = styled.div`
 
 	.user-logged {
 		span {
+			font-weight: 600;
 			color: ${theme.colors.primary};
 		}
 	}
