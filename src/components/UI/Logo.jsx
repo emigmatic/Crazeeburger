@@ -13,6 +13,7 @@ const Logo = () => {
 const StyledLogo = styled.div`
 	display: flex;
 	align-items: center;
+	font-family: ${theme.fonts.family.typo2};
 	font-size: 1em;
 	font-weight: 700;
 	line-height: 1;

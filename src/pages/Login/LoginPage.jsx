@@ -63,6 +63,7 @@ const IntroTxt = styled.p`
 	margin: 4.5rem auto;
 	padding-bottom: 3rem;
 	border-bottom: 2px solid ${theme.colors.loginLine};
+	font-family: ${theme.fonts.family.typo2};
 	font-size: 4rem;
 	font-weight: 700;
 	line-height: 1.15;
