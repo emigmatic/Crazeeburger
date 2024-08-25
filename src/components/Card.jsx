@@ -1,8 +1,9 @@
+/* eslint-disable react/prop-types */
 import styled from "styled-components"
 import Button from "../components/UI/Button"
 import { theme } from "../style/theme"
 
-function Card({ title, image, price, ...props }) {
+function Card({ title, image, price }) {
 	return (
 		<StyledCard>
 			<div className="card-image">

@@ -1,5 +1,5 @@
 function Basket() {
-	return <p>Panier</p>
+	return <></>
 }
 
 export default Basket

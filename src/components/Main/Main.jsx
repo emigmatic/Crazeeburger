@@ -1,11 +1,11 @@
 import styled from "styled-components"
-import { theme } from "../../style/theme"
-import Basket from "../../components/Basket"
-import Menu from "../../components/Menu"
+import Basket from "../Basket"
+import Menu from "../Menu"
 
 function Main() {
 	return (
 		<StyledMain>
+			<Basket />
 			<Menu />
 		</StyledMain>
 	)
@@ -13,7 +13,7 @@ function Main() {
 
 const StyledMain = styled.main`
 	flex: 1;
-	overflow-y: auto;
+	overflow: hidden;
 `
 
 export default Main

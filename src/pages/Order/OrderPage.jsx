@@ -1,14 +1,17 @@
+import Header from "../../components/Header/Header"
+import Main from "../../components/Main/Main"
 import { styled } from "styled-components"
 import { theme } from "../../style/theme"
-import Header from "./Header"
-import Main from "./Main"
+import ToastAdmin from "../../components/ToastAdmin"
+import "react-toastify/dist/ReactToastify.css"
 
 function OrderPage() {
 	return (
 		<StyledOrderPage>
 			<StyledContainer>
-				<Header></Header>
-				<Main></Main>
+				<Header />
+				<Main />
+				<ToastAdmin />
 			</StyledContainer>
 		</StyledOrderPage>
 	)
