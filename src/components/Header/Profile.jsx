@@ -10,7 +10,7 @@ function Profile() {
 		<StyledProfile>
 			<div className="user-info">
 				<p className="user-logged">
-					Welcome <span>{username}</span> !
+					Welcome <span>{username}</span>
 				</p>
 				<p className="user-logout">
 					{<Link to="/">Se déconnecter</Link>}

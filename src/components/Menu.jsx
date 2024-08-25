@@ -20,6 +20,7 @@ function Menu() {
 }
 
 const StyledMenu = styled.div`
+	height: 100%;
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
 	grid-template-rows: 1fr 1fr;
@@ -27,7 +28,7 @@ const StyledMenu = styled.div`
 	padding: 50px 50px 150px;
 	background-color: ${theme.colors.background_white};
 	box-shadow: rgba(0, 0, 0, 0.2) 0 8px 20px 8px inset;
-	overflow: auto;
+	overflow-y: auto;
 `
 
 export default Menu
