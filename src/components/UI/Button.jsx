@@ -1,17 +1,35 @@
 /* eslint-disable react/prop-types */
 import { forwardRef } from "react"
+import styled from "styled-components"
 
 const Button = forwardRef(function Button(props, ref) {
 	return (
-		<button
+		<StyledButton
 			ref={ref}
 			type={props.htmlType ? props.htmlType : "button"}
 			className={props.className}
 			onClick={props.onClick}
 		>
 			{props.children}
-		</button>
+		</StyledButton>
 	)
 })
+
+const StyledButton = styled.button`
+	display: inline-block;
+	padding: 1.25rem 2rem;
+	border: 1px solid;
+	font-size: 1.6rem;
+	line-height: 1.15;
+	appearance: none;
+	cursor: pointer;
+
+	&.icon {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		gap: 1rem;
+	}
+`
 
 export default Button

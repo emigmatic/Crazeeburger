@@ -30,6 +30,9 @@ const StyledGlobalStyle = createGlobalStyle`
 		color: ${theme.colors.greyMedium};
 		opacity: 1;
 	}
+	.is-hidden {
+		display: none;
+	}
 `
 
 function GlobalStyle() {

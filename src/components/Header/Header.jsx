@@ -1,13 +1,13 @@
-import { useState } from "react"
 import Logo from "../UI/Logo"
 import ToggleButton from "./ToggleButton"
 import Profile from "./Profile"
 import { toast } from "react-toastify"
 import styled from "styled-components"
 import { theme } from "../../style/theme"
+import { useOrderContext } from "../../context/Context"
 
 function Header() {
-	const [isModeAdmin, setIsModeAdmin] = useState(false)
+	const { isModeAdmin, setIsModeAdmin } = useOrderContext()
 
 	const displayToastNotification = () => {
 		if (!isModeAdmin) {
@@ -44,6 +44,7 @@ function Header() {
 const StyledHeader = styled.header`
 	display: flex;
 	justify-content: space-between;
+	gap: 4rem;
 	padding: 2rem 1.5rem;
 	border-bottom: 1px solid ${theme.colors.greyLight};
 `
@@ -56,6 +57,7 @@ const StyledH1 = styled.h1`
 const StyledHeaderContent = styled.div`
 	display: flex;
 	align-items: center;
+	gap: 4rem;
 `
 
 export default Header
