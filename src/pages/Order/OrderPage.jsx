@@ -1,3 +1,4 @@
+import OrderContextProvider from "../../context/OrderContext"
 import Header from "../../components/Header/Header"
 import Main from "../../components/Main/Main"
 import { styled } from "styled-components"
@@ -7,13 +8,15 @@ import "react-toastify/dist/ReactToastify.css"
 
 function OrderPage() {
 	return (
-		<StyledOrderPage>
-			<StyledContainer>
-				<Header />
-				<Main />
-				<ToastAdmin />
-			</StyledContainer>
-		</StyledOrderPage>
+		<OrderContextProvider>
+			<StyledOrderPage>
+				<StyledContainer>
+					<Header />
+					<Main />
+					<ToastAdmin />
+				</StyledContainer>
+			</StyledOrderPage>
+		</OrderContextProvider>
 	)
 }
 

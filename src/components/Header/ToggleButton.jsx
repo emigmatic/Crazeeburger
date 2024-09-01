@@ -25,7 +25,6 @@ const StyledToggleButton = styled.div`
 	--circle-width: 30px;
 
 	display: flex;
-	margin: 0 2rem;
 
 	input[type="checkbox"] {
 		display: none;

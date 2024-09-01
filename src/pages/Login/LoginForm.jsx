@@ -36,7 +36,7 @@ function LoginForm() {
 					/>
 				</StyledFormGroup>
 				<StyledButton htmlType="submit" className="icon">
-					Accéder à mon espace
+					<span>Accéder à mon espace</span>
 					<FaChevronRight size="1em" />
 				</StyledButton>
 			</form>
@@ -89,28 +89,14 @@ const StyledInputText = styled(InputText)`
 `
 
 const StyledButton = styled(Button)`
-	display: block;
 	width: 100%;
 	margin-top: 1.5rem;
-	padding: 1rem 1.5rem;
 	background-color: ${theme.colors.primary};
-	border: 0 none;
+	border-color: ${theme.colors.primary};
 	border-radius: 5px;
 	color: white;
 	font-size: 1.6rem;
 	font-weight: 700;
-	line-height: 1.5;
-	cursor: pointer;
-
-	&.icon {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-
-		svg {
-			margin-left: 1rem;
-		}
-	}
 
 	&:hover {
 		background-color: white;

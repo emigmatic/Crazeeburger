@@ -22,7 +22,7 @@ function Menu() {
 const StyledMenu = styled.div`
 	height: 100%;
 	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+	grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 	grid-template-rows: 1fr 1fr;
 	gap: 4rem;
 	padding: 50px 50px 150px;
