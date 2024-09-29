@@ -2,10 +2,16 @@
 import styled from "styled-components"
 import Button from "../components/UI/Button"
 import { theme } from "../style/theme"
+import { FaTimes } from "react-icons/fa"
 
-function Card({ title, image, price }) {
+function Card({ title, image, price, hasDeleteBtn, handleRemove }) {
 	return (
 		<StyledCard>
+			{hasDeleteBtn && (
+				<StyledDeleteBtn className="card-delete" onClick={handleRemove}>
+					<FaTimes />
+				</StyledDeleteBtn>
+			)}
 			<div className="card-image">
 				<img src={image} alt={title} />
 			</div>
@@ -13,7 +19,7 @@ function Card({ title, image, price }) {
 				<h3 className="card-title">{title}</h3>
 				<div className="card-desc">
 					<p className="card-price">{price}</p>
-					<StyledButton>Ajouter</StyledButton>
+					<StyledAddBtn>Ajouter</StyledAddBtn>
 				</div>
 			</div>
 		</StyledCard>
@@ -21,6 +27,7 @@ function Card({ title, image, price }) {
 }
 
 const StyledCard = styled.div`
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
@@ -71,7 +78,7 @@ const StyledCard = styled.div`
 	}
 `
 
-const StyledButton = styled(Button)`
+const StyledAddBtn = styled(Button)`
 	display: block;
 	padding: 1rem 2rem;
 	border: 1px solid ${theme.colors.primary};
@@ -81,11 +88,30 @@ const StyledButton = styled(Button)`
 	font-size: 1.6rem;
 	font-weight: 700;
 	line-height: 1.4;
-	cursor: pointer;
 
 	&:hover {
 		background-color: white;
 		color: ${theme.colors.primary};
+	}
+`
+
+const StyledDeleteBtn = styled(Button)`
+	position: absolute;
+	top: 1rem;
+	right: 1rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 0.5rem;
+	border-color: ${theme.colors.red};
+	border-radius: 50px;
+	background-color: ${theme.colors.red};
+	font-size: 2rem;
+	color: white;
+
+	&:hover {
+		background-color: white;
+		color: ${theme.colors.red};
 	}
 `
 
