@@ -1,6 +1,6 @@
 import styled from "styled-components"
-import AdminPanel from "./AdminPanel"
-import AdminTabs from "./AdminTabs"
+import AdminPanel from "./AdminPanel/AdminPanel"
+import AdminTabs from "./AdminTabs/AdminTabs"
 import { useOrderContext } from "../../context/Context"
 
 function Admin() {

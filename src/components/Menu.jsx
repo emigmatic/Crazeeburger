@@ -1,22 +1,37 @@
+import { useOrderContext } from "../context/Context"
 import styled from "styled-components"
 import { theme } from "../style/theme"
-import { fakeMenu2 } from "../fakeData/fakeMenu"
 import Card from "./Card"
 import { formatPrice } from "../utils/maths"
 
 function Menu() {
-	console.log(fakeMenu2)
+	const { data, setData, isModeAdmin } = useOrderContext()
 
-	const cardList = fakeMenu2.map(({ id, title, imageSource, price }) => (
+	const defaultImage = "/images/coming-soon.png"
+
+	const handleRemove = (id) => {
+		const menu = [...data]
+		const menuUpdate = menu.filter((product) => product.id !== id)
+		setData(menuUpdate)
+	}
+
+	const cardList = data.map(({ id, title, imageSource, price }) => (
 		<Card
 			key={id}
+			id={id}
 			title={title}
-			image={imageSource}
+			image={imageSource ? imageSource : defaultImage}
 			price={formatPrice(price)}
+			hasDeleteBtn={isModeAdmin}
+			handleRemove={() => handleRemove(id)}
 		/>
 	))
 
-	return <StyledMenu>{cardList}</StyledMenu>
+	return data.length > 0 ? (
+		<StyledMenu>{cardList}</StyledMenu>
+	) : (
+		<StyledEmptyInfo>Aucun produit pour le moment</StyledEmptyInfo>
+	)
 }
 
 const StyledMenu = styled.div`
@@ -27,8 +42,16 @@ const StyledMenu = styled.div`
 	gap: 4rem;
 	padding: 50px 50px 150px;
 	background-color: ${theme.colors.background_white};
-	box-shadow: rgba(0, 0, 0, 0.2) 0 8px 20px 8px inset;
+	box-shadow: 0 6px 20px 2px rgba(0, 0, 0, 0.2) inset;
 	overflow-y: auto;
+`
+
+const StyledEmptyInfo = styled.h3`
+	margin: 4.5rem auto 3rem;
+	padding: 0 2rem;
+	font-family: ${theme.fonts.family.typo2};
+	font-size: 3.2rem;
+	text-align: center;
 `
 
 export default Menu

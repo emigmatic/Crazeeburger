@@ -1,8 +1,7 @@
 export function formatPrice(priceToFormat) {
-	let price = priceToFormat
+	let price = parseFloat(priceToFormat)
 
-	// @TODO: perhaps change this to if(!price) return 0
-	if (!price) return "0,00 €"
+	if (isNaN(price)) return "0,00 €"
 	//price = replaceFrenchCommaWithDot(price)
 
 	const eurFormattedPrice = new Intl.NumberFormat("fr-FR", {
