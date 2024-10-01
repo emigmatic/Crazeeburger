@@ -11,9 +11,8 @@ import { FaCheck } from "react-icons/fa"
 import { emptyProduct } from "../../../../utils/emptyProduct"
 
 function AddForm() {
-	const { data, setData } = useOrderContext()
+	const { data, setData, newProduct, setNewProduct } = useOrderContext()
 
-	const [newProduct, setNewProduct] = useState(emptyProduct)
 	const [isSuccess, setIsSuccess] = useState(false)
 
 	const handleChange = (e) => {

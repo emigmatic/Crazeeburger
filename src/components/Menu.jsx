@@ -5,7 +5,7 @@ import Card from "./Card"
 import { formatPrice } from "../utils/maths"
 
 function Menu() {
-	const { data, setData, isModeAdmin } = useOrderContext()
+	const { data, setData, isAdminMode } = useOrderContext()
 
 	const defaultImage = "/images/coming-soon.png"
 
@@ -22,7 +22,7 @@ function Menu() {
 			title={title}
 			image={imageSource ? imageSource : defaultImage}
 			price={formatPrice(price)}
-			hasDeleteBtn={isModeAdmin}
+			hasDeleteBtn={isAdminMode}
 			handleRemove={() => handleRemove(id)}
 		/>
 	))
@@ -37,7 +37,7 @@ function Menu() {
 const StyledMenu = styled.div`
 	height: 100%;
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+	grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
 	grid-template-rows: 1fr 1fr;
 	gap: 4rem;
 	padding: 50px 50px 150px;
