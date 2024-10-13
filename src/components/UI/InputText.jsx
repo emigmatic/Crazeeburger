@@ -2,12 +2,13 @@
 import { forwardRef } from "react"
 
 const InputText = forwardRef(function InputText(
-	{ type, name, className, ...props },
+	{ value, type, name, className, ...props },
 	ref
 ) {
 	return (
 		<input
 			ref={ref}
+			value={value}
 			type={type ? type : "text"}
 			id={name}
 			name={name}

@@ -9,7 +9,7 @@ function AdminTabs() {
 	const { isCollapsed, setIsCollapsed, currentTab, setCurrentTab } =
 		useOrderContext()
 
-	const selectTab = (tab) => {
+	const selectTab = async (tab) => {
 		setCurrentTab(tab)
 		isCollapsed && setIsCollapsed(false)
 	}

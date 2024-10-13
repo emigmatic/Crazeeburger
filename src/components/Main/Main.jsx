@@ -5,14 +5,14 @@ import Admin from "../Admin/Admin"
 import { useOrderContext } from "../../context/Context"
 
 function Main() {
-	const { isModeAdmin } = useOrderContext()
+	const { isAdminMode } = useOrderContext()
 
 	return (
 		<StyledMain>
 			<Basket />
 			<StyledMainContent>
 				<Menu />
-				{isModeAdmin && <Admin />}
+				{isAdminMode && <Admin />}
 			</StyledMainContent>
 		</StyledMain>
 	)

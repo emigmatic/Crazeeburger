@@ -7,10 +7,10 @@ import { theme } from "../../style/theme"
 import { useOrderContext } from "../../context/Context"
 
 function Header() {
-	const { isModeAdmin, setIsModeAdmin } = useOrderContext()
+	const { isAdminMode, setIsAdminMode } = useOrderContext()
 
 	const displayToastNotification = () => {
-		if (!isModeAdmin) {
+		if (!isAdminMode) {
 			toast.info("Mode admin activé", {
 				theme: "dark",
 				position: "bottom-right",
@@ -22,7 +22,7 @@ function Header() {
 				progress: undefined,
 			})
 		}
-		setIsModeAdmin(() => !isModeAdmin)
+		setIsAdminMode(() => !isAdminMode)
 	}
 
 	return (
@@ -32,7 +32,7 @@ function Header() {
 			</StyledH1>
 			<StyledHeaderContent>
 				<ToggleButton
-					isChecked={isModeAdmin}
+					isChecked={isAdminMode}
 					onToggle={displayToastNotification}
 				/>
 				<Profile />

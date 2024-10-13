@@ -1,4 +1,4 @@
-export const emptyProduct = {
+export const emptyProduct = Object.freeze({
 	id: 0,
 	title: "",
 	imageSource: "",
@@ -6,4 +6,4 @@ export const emptyProduct = {
 	quantity: 0,
 	isAvailable: true,
 	isAdvertised: false,
-}
+})
