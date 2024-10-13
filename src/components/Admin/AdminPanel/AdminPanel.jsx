@@ -8,6 +8,7 @@ function AdminPanel() {
 
 	const getCurrentPanel = (tabs, currentTab) => {
 		const { panel } = tabs.find((tab) => tab.index === currentTab)
+
 		return panel
 	}
 

@@ -4,13 +4,13 @@ import EditForm from "./AdminPanel/EditForm/EditForm"
 
 export const tabs = [
 	{
-		index: "adding",
+		index: "add",
 		label: "Ajouter un produit",
 		icon: <FaPlus />,
 		panel: <AddForm />,
 	},
 	{
-		index: "editing",
+		index: "edit",
 		label: "Modifier un produit",
 		icon: <FaPen />,
 		panel: <EditForm />,

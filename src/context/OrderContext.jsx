@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { createContext, useState } from "react"
+import { createContext, useRef, useState } from "react"
 import { fakeMenu } from "../fakeData/fakeMenu"
 import { emptyProduct } from "../utils/emptyProduct"
 
@@ -14,14 +14,19 @@ export const OrderContext = createContext({
 	setData: () => {},
 	newProduct: {},
 	setNewProduct: () => {},
+	productSelected: {},
+	setProductSelected: () => {},
+	titleEditRef: {},
 })
 
 export default function OrderContextProvider({ children }) {
 	const [isAdminMode, setIsAdminMode] = useState(false)
 	const [isCollapsed, setIsCollapsed] = useState(false)
-	const [currentTab, setCurrentTab] = useState("adding")
+	const [currentTab, setCurrentTab] = useState("add")
 	const [data, setData] = useState(fakeMenu.LARGE)
 	const [newProduct, setNewProduct] = useState(emptyProduct)
+	const [productSelected, setProductSelected] = useState(emptyProduct)
+	const titleEditRef = useRef()
 
 	const OrderContextValue = {
 		isAdminMode,
@@ -34,6 +39,9 @@ export default function OrderContextProvider({ children }) {
 		setData,
 		newProduct,
 		setNewProduct,
+		productSelected,
+		setProductSelected,
+		titleEditRef,
 	}
 
 	return (

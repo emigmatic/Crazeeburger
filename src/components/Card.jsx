@@ -3,11 +3,26 @@ import styled from "styled-components"
 import Button from "../components/UI/Button"
 import { theme } from "../style/theme"
 import { FaTimes } from "react-icons/fa"
+import classNames from "classnames"
 
-function Card({ title, image, price, hasDeleteBtn, handleRemove }) {
+function Card({
+	title,
+	image,
+	price,
+	isEditable,
+	isSelected,
+	handleRemove,
+	handleSelect,
+}) {
 	return (
-		<StyledCard>
-			{hasDeleteBtn && (
+		<StyledCard
+			onClick={handleSelect}
+			className={classNames({
+				"is-hoverable": isEditable,
+				"is-selected": isSelected,
+			})}
+		>
+			{isEditable && (
 				<StyledDeleteBtn className="card-delete" onClick={handleRemove}>
 					<FaTimes />
 				</StyledDeleteBtn>
@@ -19,7 +34,7 @@ function Card({ title, image, price, hasDeleteBtn, handleRemove }) {
 				<h3 className="card-title">{title}</h3>
 				<div className="card-desc">
 					<p className="card-price">{price}</p>
-					<StyledAddBtn>Ajouter</StyledAddBtn>
+					<StyledAddBtn disabled={isEditable}>Ajouter</StyledAddBtn>
 				</div>
 			</div>
 		</StyledCard>
@@ -35,16 +50,33 @@ const StyledCard = styled.div`
 	padding: 3rem 2rem;
 	border-radius: 15px;
 	background-color: white;
-	box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+	transition: all 0.15s ease-out;
+
+	&.is-hoverable {
+		&:hover {
+			transform: scale(1.05);
+			box-shadow: 0 0 8px ${theme.colors.primary};
+			cursor: pointer;
+		}
+
+		&.is-selected {
+			background-color: ${theme.colors.primary};
+
+			.card-price {
+				color: white;
+			}
+		}
+	}
 
 	.card-image {
-		max-width: 180px;
+		max-width: 20rem;
 		margin: 0 auto;
 
 		img {
 			width: 100%;
 			max-width: 100%;
-			height: 14rem;
+			height: 15rem;
 			object-fit: contain;
 		}
 	}
@@ -92,6 +124,10 @@ const StyledAddBtn = styled(Button)`
 	&:hover {
 		background-color: white;
 		color: ${theme.colors.primary};
+	}
+
+	&:disabled {
+		visibility: hidden;
 	}
 `
 

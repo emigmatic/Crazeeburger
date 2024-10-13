@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import styled from "styled-components"
-import { theme } from "../../../style/theme"
+import { theme } from "../../../../style/theme"
 
 function ImagePreview({ path, title }) {
 	return (
@@ -18,8 +18,8 @@ const StyledImagePreview = styled.div`
 
 	img {
 		max-width: 100%;
-		width: 140px;
-		height: 100%;
+		width: 16rem;
+		height: 12rem;
 		object-fit: contain;
 		object-position: center;
 	}

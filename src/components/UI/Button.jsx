@@ -7,6 +7,7 @@ const Button = forwardRef(function Button(props, ref) {
 		<StyledButton
 			ref={ref}
 			type={props.htmlType ? props.htmlType : "button"}
+			disabled={props.disabled}
 			className={props.className}
 			onClick={props.onClick}
 		>
