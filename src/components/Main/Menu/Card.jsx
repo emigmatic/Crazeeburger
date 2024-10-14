@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import styled from "styled-components"
-import Button from "../components/UI/Button"
-import { theme } from "../style/theme"
+import Button from "../../UI/Button"
+import { theme } from "../../../style/theme"
 import { FaTimes } from "react-icons/fa"
 import classNames from "classnames"
 

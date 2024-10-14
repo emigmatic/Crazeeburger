@@ -1,6 +1,6 @@
 import styled from "styled-components"
-import Basket from "../Basket"
-import Menu from "../Menu"
+import Basket from "./Basket/Basket"
+import Menu from "./Menu/Menu"
 import Admin from "../Admin/Admin"
 import { useOrderContext } from "../../context/Context"
 

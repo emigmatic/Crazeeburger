@@ -1,12 +1,12 @@
-import { useOrderContext } from "../context/Context"
+import { useOrderContext } from "../../../context/Context"
 import Card from "./Card"
 import styled from "styled-components"
-import { theme } from "../style/theme"
-import media from "../style/breakpoints"
-import { formatPrice } from "../utils/maths"
-import { emptyProduct } from "../utils/emptyProduct"
-import { focusOnRef } from "../utils/focusOnRef"
-import { deepClone } from "../utils/deepClone"
+import { theme } from "../../../style/theme"
+import media from "../../../style/breakpoints"
+import { formatPrice } from "../../../utils/maths"
+import { emptyProduct } from "../../../utils/emptyProduct"
+import { focusOnRef } from "../../../utils/focusOnRef"
+import { deepClone } from "../../../utils/deepClone"
 
 function Menu() {
 	const {
@@ -23,11 +23,10 @@ function Menu() {
 	const defaultImage = "/images/coming-soon.png"
 
 	const handleSelect = async (id) => {
-		const menuCopy = deepClone(data)
 		const selected =
 			productSelected.id === id
 				? emptyProduct
-				: menuCopy.find((product) => product.id === id)
+				: data.find((product) => product.id === id)
 		await setProductSelected(selected)
 		await setCurrentTab("edit")
 		await setIsCollapsed(false)

@@ -3,7 +3,7 @@ import Header from "../../components/Header/Header"
 import Main from "../../components/Main/Main"
 import { styled } from "styled-components"
 import { theme } from "../../style/theme"
-import ToastAdmin from "../../components/ToastAdmin"
+import ToastAdmin from "../../components/Toast/ToastAdmin"
 import "react-toastify/dist/ReactToastify.css"
 
 function OrderPage() {
