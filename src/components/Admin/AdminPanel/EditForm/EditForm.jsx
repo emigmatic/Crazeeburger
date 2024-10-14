@@ -17,6 +17,7 @@ function EditForm() {
 			...productSelected,
 			[name]: value,
 		}
+
 		setProductSelected(productBeingUpdated)
 		handleEdit(productBeingUpdated)
 	}

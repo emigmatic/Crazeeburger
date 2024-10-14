@@ -3,6 +3,7 @@ import { theme } from "../../../../style/theme"
 import media from "../../../../style/breakpoints"
 import InputText from "../../../UI/InputText"
 import Button from "../../../UI/Button"
+import InputSelect from "../../../UI/InputSelect"
 
 export const StyledForm = styled.form`
 	${media.md`
@@ -15,6 +16,7 @@ export const StyledForm = styled.form`
 
 export const StyledFormGroup = styled.div`
 	position: relative;
+	width: 100%;
 	margin-top: 1rem;
 
 	&::before {
@@ -46,6 +48,14 @@ export const StyledFormGroup = styled.div`
 		&.price {
 			grid-area: 3 / 2 / 3 / 3;
 		}
+
+		&.avaibility {
+			grid-area: 3 / 3 / 3 / 4;
+		}
+
+		&.advertising {
+			grid-area: 3 / 4 / 3 / 5;
+		}
 	`}
 `
 
@@ -53,6 +63,21 @@ export const StyledInput = styled(InputText)`
 	display: block;
 	width: 100%;
 	padding: 1rem 1rem 1rem 4rem;
+	background-color: ${theme.colors.background_white};
+	border-radius: 5px;
+	border: 0 none;
+	font-size: 1.6rem;
+	line-height: 1;
+
+	${media.md`
+		font-size: 1.8rem;
+	`}
+`
+
+export const StyledSelect = styled(InputSelect)`
+	display: block;
+	width: 100%;
+	padding: 1rem 2rem 1rem 4rem;
 	background-color: ${theme.colors.background_white};
 	border-radius: 5px;
 	border: 0 none;

@@ -9,11 +9,14 @@ function Card({
 	title,
 	image,
 	price,
+	isAvailable,
 	isEditable,
 	isSelected,
 	handleRemove,
 	handleSelect,
 }) {
+	const soldOutImage = "/images/out-of-stock.png"
+
 	return (
 		<StyledCard
 			onClick={handleSelect}
@@ -34,21 +37,30 @@ function Card({
 				<h3 className="card-title">{title}</h3>
 				<div className="card-desc">
 					<p className="card-price">{price}</p>
-					<StyledAddBtn disabled={isEditable}>Ajouter</StyledAddBtn>
+					<StyledAddBtn disabled={isEditable || !isAvailable}>
+						Ajouter
+					</StyledAddBtn>
 				</div>
 			</div>
+			{!isAvailable && (
+				<div className="sold-out">
+					<img src={soldOutImage} alt="En rupture" />
+				</div>
+			)}
 		</StyledCard>
 	)
 }
 
 const StyledCard = styled.div`
+	--radius: 15px;
+
 	position: relative;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
 	width: 100%;
 	padding: 3rem 2rem;
-	border-radius: 15px;
+	border-radius: var(--radius);
 	background-color: white;
 	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 	transition: all 0.15s ease-out;
@@ -108,6 +120,28 @@ const StyledCard = styled.div`
 		color: ${theme.colors.primary};
 		line-height: 1;
 	}
+
+	.sold-out {
+		display: flex;
+		justify-content: center;
+		align-items: flex-start;
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		z-index: 1;
+		padding: 6rem 2rem 3rem;
+		border-radius: var(--radius);
+		background-color: rgba(255, 255, 255, 0.75);
+
+		img {
+			width: 22rem;
+			max-width: 100%;
+			object-fit: contain;
+			object-position: center;
+		}
+	}
 `
 
 const StyledAddBtn = styled(Button)`
@@ -135,6 +169,7 @@ const StyledDeleteBtn = styled(Button)`
 	position: absolute;
 	top: 1rem;
 	right: 1rem;
+	z-index: 2;
 	display: flex;
 	justify-content: center;
 	align-items: center;

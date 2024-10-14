@@ -7,6 +7,7 @@ import { formatPrice } from "../../../utils/maths"
 import { emptyProduct } from "../../../utils/emptyProduct"
 import { focusOnRef } from "../../../utils/focusOnRef"
 import { deepClone } from "../../../utils/deepClone"
+import { convertStrToBool } from "../../../utils/convertStrToBool"
 
 function Menu() {
 	const {
@@ -46,19 +47,22 @@ function Menu() {
 		}
 	}
 
-	const cardList = data.map(({ id, title, imageSource, price }) => (
-		<Card
-			key={id}
-			id={id}
-			title={title}
-			image={imageSource ? imageSource : defaultImage}
-			price={formatPrice(price)}
-			isEditable={isAdminMode}
-			isSelected={isAdminMode && productSelected.id === id}
-			handleRemove={(e) => handleRemove(e, id)}
-			handleSelect={isAdminMode ? () => handleSelect(id) : undefined}
-		/>
-	))
+	const cardList = data.map(
+		({ id, title, imageSource, price, isAvailable }) => (
+			<Card
+				key={id}
+				id={id}
+				title={title}
+				image={imageSource ? imageSource : defaultImage}
+				price={formatPrice(price)}
+				isAvailable={convertStrToBool(isAvailable)}
+				isEditable={isAdminMode}
+				isSelected={isAdminMode && productSelected.id === id}
+				handleRemove={(e) => handleRemove(e, id)}
+				handleSelect={isAdminMode ? () => handleSelect(id) : undefined}
+			/>
+		)
+	)
 
 	return data.length > 0 ? (
 		<StyledMenu>{cardList}</StyledMenu>
