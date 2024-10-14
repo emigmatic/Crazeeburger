@@ -1,9 +1,12 @@
 import { useOrderContext } from "../context/Context"
+import Card from "./Card"
 import styled from "styled-components"
 import { theme } from "../style/theme"
-import Card from "./Card"
+import media from "../style/breakpoints"
 import { formatPrice } from "../utils/maths"
 import { emptyProduct } from "../utils/emptyProduct"
+import { focusOnRef } from "../utils/focusOnRef"
+import { deepClone } from "../utils/deepClone"
 
 function Menu() {
 	const {
@@ -20,25 +23,23 @@ function Menu() {
 	const defaultImage = "/images/coming-soon.png"
 
 	const handleSelect = async (id) => {
-		const menu = [...data]
+		const menuCopy = deepClone(data)
 		const selected =
 			productSelected.id === id
 				? emptyProduct
-				: menu.find((product) => product.id === id)
+				: menuCopy.find((product) => product.id === id)
 		await setProductSelected(selected)
 		await setCurrentTab("edit")
 		await setIsCollapsed(false)
 
-		if (titleEditRef.current) {
-			titleEditRef.current.focus()
-		}
+		focusOnRef(titleEditRef)
 	}
 
 	const handleRemove = (e, id) => {
 		e.stopPropagation()
 
-		const menu = [...data]
-		const menuUpdate = menu.filter((product) => product.id !== id)
+		const menuCopy = deepClone(data)
+		const menuUpdate = menuCopy.filter((product) => product.id !== id)
 		setData(menuUpdate)
 
 		if (productSelected.id === id) {
@@ -75,10 +76,14 @@ const StyledMenu = styled.div`
 	grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
 	grid-template-rows: 1fr 1fr;
 	gap: 4rem;
-	padding: 50px 50px 150px;
+	padding: 50px 2rem 150px;
 	background-color: ${theme.colors.background_white};
 	box-shadow: 0 6px 20px 2px rgba(0, 0, 0, 0.15) inset;
 	overflow-y: auto;
+
+	${media.md`
+		padding: 50px 50px 150px;
+	`}
 `
 
 const StyledEmptyInfo = styled.div`

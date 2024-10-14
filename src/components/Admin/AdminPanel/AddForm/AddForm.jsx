@@ -6,6 +6,7 @@ import styled from "styled-components"
 import { theme } from "../../../../style/theme"
 import Form from "../shared/Form"
 import { StyledFormFooter, StyledButton } from "../shared/styles"
+import { deepClone } from "../../../../utils/deepClone"
 
 function AddForm() {
 	const { data, setData, newProduct, setNewProduct } = useOrderContext()
@@ -13,7 +14,6 @@ function AddForm() {
 	const [isSuccess, setIsSuccess] = useState(false)
 
 	const handleChange = (e) => {
-		//setNewProduct({ ...newProduct, [e.target.name]: e.target.value })
 		const { name, value } = e.target
 		setNewProduct((prevState) => {
 			return { ...prevState, [name]: value }
@@ -23,9 +23,10 @@ function AddForm() {
 	const handleSubmit = (e) => {
 		e.preventDefault()
 
-		const product = { ...newProduct, id: crypto.randomUUID() }
-		const menu = [product, ...data]
-		setData(menu)
+		const productToAdd = { ...newProduct, id: crypto.randomUUID() }
+		const menuCopy = deepClone(data)
+		const menuUpdated = [productToAdd, ...menuCopy]
+		setData(menuUpdated)
 		setNewProduct(emptyProduct)
 		setIsSuccess(true)
 		setTimeout(() => {
@@ -56,7 +57,7 @@ function AddForm() {
 	)
 }
 
-export const StyledSuccessInfo = styled.p`
+const StyledSuccessInfo = styled.p`
 	display: flex;
 	justify-content: center;
 	align-items: center;

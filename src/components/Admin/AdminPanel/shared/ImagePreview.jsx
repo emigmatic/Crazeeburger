@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import styled from "styled-components"
 import { theme } from "../../../../style/theme"
+import media from "../../../../style/breakpoints"
 
 function ImagePreview({ path, title }) {
 	return (
@@ -30,11 +31,18 @@ const StyledImagePreview = styled.div`
 		align-items: center;
 		width: 100%;
 		height: 100%;
-		padding: 1rem;
+		margin: 0;
+		padding: 3rem 1rem;
 		border: 1px solid ${theme.colors.greyLight};
 		border-radius: 5px;
 		color: ${theme.colors.greyDark};
 	}
+
+	${media.md`
+		p {
+			padding: 1rem;
+		}
+	`}
 `
 
 export default ImagePreview
