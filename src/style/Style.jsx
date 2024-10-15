@@ -1,6 +1,5 @@
 import { createGlobalStyle, styled, keyframes } from "styled-components"
 import { theme } from "../style/theme"
-import media from "./breakpoints"
 
 const StyledGlobalStyle = createGlobalStyle`
 	* {
@@ -15,6 +14,7 @@ const StyledGlobalStyle = createGlobalStyle`
 	html {
     	font-family: ${theme.fonts.family.typo1};
     	font-size: 62.5%;
+		color: ${theme.colors.dark};
     	line-height: 1.4;
 		hyphens: auto;
 	}

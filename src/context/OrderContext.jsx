@@ -16,6 +16,8 @@ export const OrderContext = createContext({
 	setNewProduct: () => {},
 	productSelected: {},
 	setProductSelected: () => {},
+	basketProducts: {},
+	setBasketProducts: () => {},
 	titleEditRef: {},
 })
 
@@ -26,6 +28,7 @@ export default function OrderContextProvider({ children }) {
 	const [data, setData] = useState(fakeMenu.LARGE)
 	const [newProduct, setNewProduct] = useState(emptyProduct)
 	const [productSelected, setProductSelected] = useState(emptyProduct)
+	const [basketProducts, setBasketProducts] = useState([])
 	const titleEditRef = useRef()
 
 	const OrderContextValue = {
@@ -41,6 +44,8 @@ export default function OrderContextProvider({ children }) {
 		setNewProduct,
 		productSelected,
 		setProductSelected,
+		basketProducts,
+		setBasketProducts,
 		titleEditRef,
 	}
 

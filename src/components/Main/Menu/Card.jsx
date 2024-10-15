@@ -10,10 +10,12 @@ function Card({
 	image,
 	price,
 	isAvailable,
+	isAdvertised,
 	isEditable,
 	isSelected,
 	handleRemove,
 	handleSelect,
+	handleAddToBasket,
 }) {
 	const soldOutImage = "/images/out-of-stock.png"
 
@@ -37,7 +39,10 @@ function Card({
 				<h3 className="card-title">{title}</h3>
 				<div className="card-desc">
 					<p className="card-price">{price}</p>
-					<StyledAddBtn disabled={isEditable || !isAvailable}>
+					<StyledAddBtn
+						disabled={isEditable || !isAvailable}
+						onClick={handleAddToBasket}
+					>
 						Ajouter
 					</StyledAddBtn>
 				</div>
@@ -46,6 +51,11 @@ function Card({
 				<div className="sold-out">
 					<img src={soldOutImage} alt="En rupture" />
 				</div>
+			)}
+			{isAdvertised && (
+				<StyledRibbon>
+					<span>Nouveau</span>
+				</StyledRibbon>
 			)}
 		</StyledCard>
 	)
@@ -59,6 +69,8 @@ const StyledCard = styled.div`
 	flex-direction: column;
 	justify-content: space-between;
 	width: 100%;
+	max-width: 28rem;
+	margin: 0 auto;
 	padding: 3rem 2rem;
 	border-radius: var(--radius);
 	background-color: white;
@@ -183,6 +195,55 @@ const StyledDeleteBtn = styled(Button)`
 	&:hover {
 		background-color: white;
 		color: ${theme.colors.red};
+	}
+`
+
+const StyledRibbon = styled.div`
+	position: absolute;
+	top: -1rem;
+	left: -1rem;
+	z-index: 2;
+	width: 150px;
+	height: 150px;
+	overflow: hidden;
+	pointer-events: none;
+
+	&::before,
+	&::after {
+		content: "";
+		position: absolute;
+		z-index: -1;
+		border: 5px solid #961015;
+		border-top-color: transparent;
+		border-left-color: transparent;
+	}
+
+	&::before {
+		top: 0;
+		right: 0;
+	}
+
+	&::after {
+		bottom: 0;
+		left: 0;
+	}
+
+	span {
+		position: absolute;
+		top: 30px;
+		right: -25px;
+		transform: rotate(-45deg);
+		display: block;
+		width: 225px;
+		padding: 1.5rem 2rem;
+		background-color: ${theme.colors.redSecondary};
+		box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+		font-size: 1.8rem;
+		font-weight: 700;
+		color: white;
+		line-height: 1;
+		text-align: center;
+		text-transform: uppercase;
 	}
 `
 

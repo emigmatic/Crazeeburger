@@ -8,6 +8,7 @@ import { emptyProduct } from "../../../utils/emptyProduct"
 import { focusOnRef } from "../../../utils/focusOnRef"
 import { deepClone } from "../../../utils/deepClone"
 import { convertStrToBool } from "../../../utils/convertStrToBool"
+import { isEmpty } from "../../../utils/array"
 
 function Menu() {
 	const {
@@ -18,6 +19,8 @@ function Menu() {
 		setProductSelected,
 		setCurrentTab,
 		setIsCollapsed,
+		basketProducts,
+		setBasketProducts,
 		titleEditRef,
 	} = useOrderContext()
 
@@ -47,8 +50,25 @@ function Menu() {
 		}
 	}
 
+	const handleAddToBasket = (id) => {
+		const productToAdd = data.find((product) => {
+			return product.id === id
+		})
+		const basketProductsCopy = deepClone(basketProducts)
+		const existingProduct = basketProductsCopy.findIndex((product) => {
+			return product.id === id
+		})
+		if (existingProduct === -1) {
+			productToAdd.quantity = 1
+			basketProductsCopy.unshift(productToAdd)
+		} else {
+			basketProductsCopy[existingProduct].quantity++
+		}
+		setBasketProducts(basketProductsCopy)
+	}
+
 	const cardList = data.map(
-		({ id, title, imageSource, price, isAvailable }) => (
+		({ id, title, imageSource, price, isAvailable, isAdvertised }) => (
 			<Card
 				key={id}
 				id={id}
@@ -56,20 +76,22 @@ function Menu() {
 				image={imageSource ? imageSource : defaultImage}
 				price={formatPrice(price)}
 				isAvailable={convertStrToBool(isAvailable)}
+				isAdvertised={convertStrToBool(isAdvertised)}
 				isEditable={isAdminMode}
 				isSelected={isAdminMode && productSelected.id === id}
 				handleRemove={(e) => handleRemove(e, id)}
 				handleSelect={isAdminMode ? () => handleSelect(id) : undefined}
+				handleAddToBasket={() => handleAddToBasket(id)}
 			/>
 		)
 	)
 
-	return data.length > 0 ? (
-		<StyledMenu>{cardList}</StyledMenu>
-	) : (
+	return isEmpty(data) ? (
 		<StyledEmptyInfo>
 			<p>Aucun produit pour le moment</p>
 		</StyledEmptyInfo>
+	) : (
+		<StyledMenu>{cardList}</StyledMenu>
 	)
 }
 
@@ -85,7 +107,7 @@ const StyledMenu = styled.div`
 	overflow-y: auto;
 
 	${media.md`
-		padding: 50px 50px 150px;
+		padding: 50px 4rem 150px;
 	`}
 `
 

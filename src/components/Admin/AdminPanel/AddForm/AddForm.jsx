@@ -1,5 +1,5 @@
 import { useOrderContext } from "../../../../context/Context"
-import { useState } from "react"
+import { useSuccessMsg } from "../../../../hooks/useSuccessMsg"
 import { FaCheck } from "react-icons/fa"
 import { emptyProduct } from "../../../../utils/emptyProduct"
 import styled from "styled-components"
@@ -11,7 +11,7 @@ import { deepClone } from "../../../../utils/deepClone"
 function AddForm() {
 	const { data, setData, newProduct, setNewProduct } = useOrderContext()
 
-	const [isSuccess, setIsSuccess] = useState(false)
+	const { isSuccess, displaySuccessMsg } = useSuccessMsg()
 
 	const handleChange = (e) => {
 		const { name, value } = e.target
@@ -28,10 +28,7 @@ function AddForm() {
 		const menuUpdated = [productToAdd, ...menuCopy]
 		setData(menuUpdated)
 		setNewProduct(emptyProduct)
-		setIsSuccess(true)
-		setTimeout(() => {
-			setIsSuccess(false)
-		}, 2000)
+		displaySuccessMsg()
 	}
 
 	return (
