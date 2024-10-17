@@ -6,7 +6,7 @@ import styled from "styled-components"
 import { theme } from "../../../../style/theme"
 import Form from "../shared/Form"
 import { StyledFormFooter, StyledButton } from "../shared/styles"
-import { deepClone } from "../../../../utils/deepClone"
+import { deepClone } from "../../../../utils/array"
 
 function AddForm() {
 	const { data, setData, newProduct, setNewProduct } = useOrderContext()

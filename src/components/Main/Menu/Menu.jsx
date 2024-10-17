@@ -6,9 +6,8 @@ import media from "../../../style/breakpoints"
 import { formatPrice } from "../../../utils/maths"
 import { emptyProduct } from "../../../utils/emptyProduct"
 import { focusOnRef } from "../../../utils/focusOnRef"
-import { deepClone } from "../../../utils/deepClone"
 import { convertStrToBool } from "../../../utils/convertStrToBool"
-import { isEmpty } from "../../../utils/array"
+import { deepClone, isEmpty } from "../../../utils/array"
 
 function Menu() {
 	const {
@@ -21,6 +20,7 @@ function Menu() {
 		setIsCollapsed,
 		basketProducts,
 		setBasketProducts,
+		deleteBasketProduct,
 		titleEditRef,
 	} = useOrderContext()
 
@@ -48,6 +48,8 @@ function Menu() {
 		if (productSelected.id === id) {
 			setProductSelected(emptyProduct)
 		}
+
+		deleteBasketProduct(id)
 	}
 
 	const handleAddToBasket = (id) => {
@@ -114,14 +116,13 @@ const StyledMenu = styled.div`
 const StyledEmptyInfo = styled.div`
 	display: flex;
 	justify-content: center;
+	align-items: center;
 	height: 100%;
-	padding-top: 50px;
+	padding: 0 2rem;
 	background-color: ${theme.colors.background_white};
 	box-shadow: 0 6px 20px 2px rgba(0, 0, 0, 0.2) inset;
 
 	p {
-		margin: 0;
-		padding: 0 2rem;
 		font-family: ${theme.fonts.family.typo2};
 		font-size: 3.2rem;
 		text-align: center;

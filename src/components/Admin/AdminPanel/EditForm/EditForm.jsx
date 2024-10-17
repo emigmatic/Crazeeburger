@@ -5,7 +5,7 @@ import { theme } from "../../../../style/theme"
 import media from "../../../../style/breakpoints"
 import Form from "../shared/Form"
 import { StyledFormFooter } from "../shared/styles"
-import { deepClone } from "../../../../utils/deepClone"
+import { deepClone } from "../../../../utils/array"
 
 function EditForm() {
 	const { data, setData, productSelected, setProductSelected } =

@@ -8,6 +8,6 @@ export default function EmptyBasket() {
 const StyledEmptyBasket = styled.p`
 	width: 100%;
 	font-family: ${theme.fonts.family.typo2};
-	font-size: 3.6rem;
+	font-size: 3.2rem;
 	text-align: center;
 `

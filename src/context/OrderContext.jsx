@@ -2,6 +2,7 @@
 import { createContext, useRef, useState } from "react"
 import { fakeMenu } from "../fakeData/fakeMenu"
 import { emptyProduct } from "../utils/emptyProduct"
+import { deepClone, filter } from "../utils/array"
 
 export const OrderContext = createContext({
 	isAdminMode: false,
@@ -18,6 +19,9 @@ export const OrderContext = createContext({
 	setProductSelected: () => {},
 	basketProducts: {},
 	setBasketProducts: () => {},
+	deleteBasketProduct: () => {},
+	totalPrice: 0,
+	setTotalPrice: () => {},
 	titleEditRef: {},
 })
 
@@ -29,7 +33,14 @@ export default function OrderContextProvider({ children }) {
 	const [newProduct, setNewProduct] = useState(emptyProduct)
 	const [productSelected, setProductSelected] = useState(emptyProduct)
 	const [basketProducts, setBasketProducts] = useState([])
+	const [totalPrice, setTotalPrice] = useState(0)
 	const titleEditRef = useRef()
+
+	const deleteBasketProduct = (id) => {
+		const basketProductsCopy = deepClone(basketProducts)
+		const basketProductsUpdate = filter(id, basketProductsCopy)
+		setBasketProducts(basketProductsUpdate)
+	}
 
 	const OrderContextValue = {
 		isAdminMode,
@@ -46,6 +57,9 @@ export default function OrderContextProvider({ children }) {
 		setProductSelected,
 		basketProducts,
 		setBasketProducts,
+		deleteBasketProduct,
+		totalPrice,
+		setTotalPrice,
 		titleEditRef,
 	}
 
