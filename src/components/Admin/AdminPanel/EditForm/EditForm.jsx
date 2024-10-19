@@ -5,28 +5,30 @@ import { theme } from "../../../../style/theme"
 import media from "../../../../style/breakpoints"
 import Form from "../shared/Form"
 import { StyledFormFooter } from "../shared/styles"
+import { deepClone } from "../../../../utils/array"
 
 function EditForm() {
 	const { data, setData, productSelected, setProductSelected } =
 		useOrderContext()
 
 	const handleChange = (e) => {
+		const { name, value } = e.target
 		const productBeingUpdated = {
 			...productSelected,
-			[e.target.name]: e.target.value,
+			[name]: value,
 		}
+
 		setProductSelected(productBeingUpdated)
-		handleEdit(productBeingUpdated, e)
+		handleEdit(productBeingUpdated)
 	}
 
-	const handleEdit = (product, e) => {
-		const menu = [...data]
-		const menuUpdate = menu.map((item) => {
-			return item.id === product.id
-				? { ...item, [e.target.name]: e.target.value }
-				: item
-		})
-		setData(menuUpdate)
+	const handleEdit = (product) => {
+		const menuCopy = deepClone(data)
+		const productToUpdate = menuCopy.findIndex(
+			(item) => item.id === product.id
+		)
+		menuCopy[productToUpdate] = product
+		setData(menuCopy)
 	}
 
 	return productSelected.id !== 0 ? (

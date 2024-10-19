@@ -1,7 +1,8 @@
-import styled from "styled-components"
-import Button from "../../UI/Button"
-import { theme } from "../../../style/theme"
 import { useOrderContext } from "../../../context/Context"
+import Button from "../../UI/Button"
+import styled from "styled-components"
+import media from "../../../style/breakpoints"
+import { theme } from "../../../style/theme"
 import { tabs } from "../tabsConfig"
 import { FaChevronDown, FaChevronUp } from "react-icons/fa"
 
@@ -17,13 +18,11 @@ function AdminTabs() {
 	return (
 		<StyledAdminTabs>
 			<StyledTab
-				className={`icon ${isCollapsed ? "is-active" : ""}`}
+				className={`collapse icon ${isCollapsed ? "is-active" : ""}`}
 				onClick={() => setIsCollapsed(!isCollapsed)}
 			>
 				{isCollapsed ? <FaChevronUp /> : <FaChevronDown />}
-				<span className="is-hidden">
-					{isCollapsed ? "Afficher" : "Masquer"}
-				</span>
+				<span>{isCollapsed ? "Afficher" : "Masquer"}</span>
 			</StyledTab>
 			{tabs.map((tab, index) => (
 				<StyledTab
@@ -58,6 +57,12 @@ const StyledTab = styled(Button)`
 	box-shadow: 0px -5px 12px -2px rgba(0, 0, 0, 0.1);
 	color: ${theme.colors.greySemiDark};
 
+	&.collapse {
+		span {
+			display: none;
+		}
+	}
+
 	&:hover {
 		span {
 			text-decoration: underline;
@@ -69,6 +74,13 @@ const StyledTab = styled(Button)`
 		border-color: ${theme.colors.background_dark};
 		color: white;
 	}
+	span {
+		display: none;
+	}
+
+	${media.md`
+		span { display: block; }
+	`}
 `
 
 export default AdminTabs

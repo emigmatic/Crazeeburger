@@ -1,6 +1,6 @@
 import styled from "styled-components"
-import Basket from "../Basket"
-import Menu from "../Menu"
+import Basket from "./Basket/Basket"
+import Menu from "./Menu/Menu"
 import Admin from "../Admin/Admin"
 import { useOrderContext } from "../../context/Context"
 
@@ -19,13 +19,14 @@ function Main() {
 }
 
 const StyledMain = styled.main`
-	flex: 1;
+	flex: 1 1 auto;
+	display: flex;
 	overflow: hidden;
 `
 
 const StyledMainContent = styled.div`
 	position: relative;
-	height: 100%;
+	flex: 1 1 auto;
 `
 
 export default Main

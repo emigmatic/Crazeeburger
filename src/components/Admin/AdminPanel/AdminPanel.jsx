@@ -2,6 +2,7 @@ import styled from "styled-components"
 import { theme } from "../../../style/theme"
 import { useOrderContext } from "../../../context/Context"
 import { tabs } from "../tabsConfig"
+import media from "../../../style/breakpoints"
 
 function AdminPanel() {
 	const { currentTab } = useOrderContext()
@@ -18,10 +19,14 @@ function AdminPanel() {
 }
 
 const StyledAdminPanel = styled.div`
-	padding: 3rem 4rem;
+	padding: 3rem 2rem;
 	background-color: white;
 	border: 1px solid ${theme.colors.greyLight};
 	box-shadow: 0px -5px 12px -2px rgba(0, 0, 0, 0.1);
+
+	${media.md`
+		padding: 3rem 4rem;
+	`}
 `
 
 export default AdminPanel
