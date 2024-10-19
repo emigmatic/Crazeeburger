@@ -7,7 +7,7 @@ import { formatPrice } from "../../../utils/maths"
 import { emptyProduct } from "../../../utils/emptyProduct"
 import { focusOnRef } from "../../../utils/focusOnRef"
 import { convertStrToBool } from "../../../utils/convertStrToBool"
-import { deepClone, isEmpty } from "../../../utils/array"
+import { deepClone, filterById, isEmpty } from "../../../utils/array"
 
 function Menu() {
 	const {
@@ -42,7 +42,7 @@ function Menu() {
 		e.stopPropagation()
 
 		const menuCopy = deepClone(data)
-		const menuUpdate = menuCopy.filter((product) => product.id !== id)
+		const menuUpdate = filterById(id, menuCopy)
 		setData(menuUpdate)
 
 		if (productSelected.id === id) {
@@ -53,9 +53,11 @@ function Menu() {
 	}
 
 	const handleAddToBasket = (id) => {
-		const productToAdd = data.find((product) => {
-			return product.id === id
-		})
+		const productToAdd = {
+			id,
+			quantity: 1,
+		}
+
 		const basketProductsCopy = deepClone(basketProducts)
 		const existingProduct = basketProductsCopy.findIndex((product) => {
 			return product.id === id

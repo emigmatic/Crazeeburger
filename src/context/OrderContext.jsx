@@ -2,7 +2,7 @@
 import { createContext, useRef, useState } from "react"
 import { fakeMenu } from "../fakeData/fakeMenu"
 import { emptyProduct } from "../utils/emptyProduct"
-import { deepClone, filter } from "../utils/array"
+import { deepClone, filterById } from "../utils/array"
 
 export const OrderContext = createContext({
 	isAdminMode: false,
@@ -38,7 +38,7 @@ export default function OrderContextProvider({ children }) {
 
 	const deleteBasketProduct = (id) => {
 		const basketProductsCopy = deepClone(basketProducts)
-		const basketProductsUpdate = filter(id, basketProductsCopy)
+		const basketProductsUpdate = filterById(id, basketProductsCopy)
 		setBasketProducts(basketProductsUpdate)
 	}
 

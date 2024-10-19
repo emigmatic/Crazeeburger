@@ -1,24 +1,24 @@
 import { useOrderContext } from "../../../../context/Context"
 import BasketCard from "./BasketCard"
 import { formatPrice } from "../../../../utils/maths"
-import { deepClone, find } from "../../../../utils/array"
+import { deepClone, findById } from "../../../../utils/array"
 
 function BasketProducts() {
-	const { basketProducts, setBasketProducts, deleteBasketProduct } =
+	const { data, basketProducts, setBasketProducts, deleteBasketProduct } =
 		useOrderContext()
 
 	const defaultImage = "/images/coming-soon.png"
 
 	const handleIncrement = (id) => {
 		const basketProductsCopy = deepClone(basketProducts)
-		const basketProductToUpdate = find(id, basketProductsCopy)
+		const basketProductToUpdate = findById(id, basketProductsCopy)
 		basketProductToUpdate.quantity++
 		setBasketProducts(basketProductsCopy)
 	}
 
 	const handleDecrement = (id) => {
 		const basketProductsCopy = deepClone(basketProducts)
-		const basketProductToUpdate = find(id, basketProductsCopy)
+		const basketProductToUpdate = findById(id, basketProductsCopy)
 		if (basketProductToUpdate.quantity > 1) {
 			basketProductToUpdate.quantity--
 			setBasketProducts(basketProductsCopy)
@@ -27,17 +27,19 @@ function BasketProducts() {
 		}
 	}
 
-	return basketProducts.map(({ id, title, imageSource, price, quantity }) => {
+	return basketProducts.map(({ id, quantity }) => {
+		const product = findById(id, data)
+
 		return (
 			<BasketCard
-				key={id}
-				title={title}
-				image={imageSource ? imageSource : defaultImage}
-				price={formatPrice(price)}
+				key={product.id}
+				title={product.title}
+				image={product.imageSource ? product.imageSource : defaultImage}
+				price={formatPrice(product.price)}
 				quantity={quantity}
-				handleDelete={() => deleteBasketProduct(id)}
-				handleIncrement={() => handleIncrement(id)}
-				handleDecrement={() => handleDecrement(id)}
+				handleDelete={() => deleteBasketProduct(product.id)}
+				handleIncrement={() => handleIncrement(product.id)}
+				handleDecrement={() => handleDecrement(product.id)}
 			/>
 		)
 	})

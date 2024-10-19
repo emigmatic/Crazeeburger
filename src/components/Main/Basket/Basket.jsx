@@ -5,14 +5,14 @@ import BasketBody from "./BasketBody/BasketBody"
 import BasketFooter from "./BasketFooter/BasketFooter"
 import { theme } from "../../../style/theme"
 import { formatPrice } from "../../../utils/maths"
-import { find } from "../../../utils/array"
+import { findById } from "../../../utils/array"
 
 function Basket() {
 	const { data, basketProducts } = useOrderContext()
 
 	const calculateAmount = (basketProducts, menuProducts) => {
 		return basketProducts.reduce((total, product) => {
-			const productMenu = find(product.id, menuProducts)
+			const productMenu = findById(product.id, menuProducts)
 			if (isNaN(productMenu.price)) return total
 			total += productMenu.price * product.quantity
 			return total

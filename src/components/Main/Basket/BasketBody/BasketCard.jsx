@@ -126,7 +126,7 @@ const StyledBasketCardDeleteBtn = styled(Button)`
 	background-color: ${theme.colors.redSecondary};
 	font-size: 2rem;
 	color: white;
-	transition: all 0.2s ease-out;
+	transition: all 0.1s ease-out;
 
 	span {
 		display: none;

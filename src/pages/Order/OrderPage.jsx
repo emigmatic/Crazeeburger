@@ -34,7 +34,7 @@ const StyledContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	width: 100%;
-	max-width: 120rem;
+	max-width: 124rem;
 	height: 100%;
 	border-radius: 15px;
 	background-color: white;
